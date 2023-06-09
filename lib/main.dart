@@ -42,8 +42,12 @@ class HomePage extends StatelessWidget {
             const Text(
               'Tic Tac Toe',
             ),
+            const SizedBox(
+              height: 90,
+            ),
             Expanded(
                 child: GridView.builder(
+              padding: const EdgeInsets.all(10),
               itemCount: 9,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3, mainAxisSpacing: 5, crossAxisSpacing: 5),
@@ -52,11 +56,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
