@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'presentation/components/tile.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -35,14 +37,18 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
               'Tic Tac Toe',
             ),
-            Text(
-              'Hello',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            Expanded(
+                child: GridView.builder(
+              itemCount: 9,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3, mainAxisSpacing: 5, crossAxisSpacing: 5),
+              itemBuilder: (context, index) => Tile(),
+            ))
           ],
         ),
       ),
