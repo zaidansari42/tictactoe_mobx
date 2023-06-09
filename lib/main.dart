@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'presentation/components/tile.dart';
 import 'presentation/pages/home_page.dart';
 
 void main() {

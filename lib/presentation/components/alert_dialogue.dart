@@ -2,26 +2,17 @@ import 'package:flutter/material.dart';
 
 class AlertDialogue extends StatelessWidget {
   final VoidCallback func;
-  const AlertDialogue({super.key, required this.func});
-
-//   Future<void> _showMyDialog() async {
-//   return showDialog<void>(
-//     context: context,
-//     barrierDismissible: false, // user must tap button!
-//     builder: (BuildContext context) {
-//       return
-//     },
-//   );
-// }
+  final String winner;
+  const AlertDialogue({super.key, required this.func, required this.winner});
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Player Wins'),
-      content: const SingleChildScrollView(
+      title: Text('Player $winner Wins'),
+      content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
-            Text('Congrats You have won'),
+            Text('Congrats, Player $winner has won the game!'),
           ],
         ),
       ),

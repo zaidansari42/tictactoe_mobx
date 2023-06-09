@@ -31,8 +31,11 @@ class _HomePageState extends State<HomePage> {
 
   bool currentPlayerX = true;
 
+  int timesPLayed = 0;
+
   void switchPlayer() {
     currentPlayerX = !currentPlayerX;
+    timesPLayed = timesPLayed + 1;
   }
 
   void checkForWin() {
@@ -40,49 +43,49 @@ class _HomePageState extends State<HomePage> {
         data[1] == data[2] &&
         data[0] == data[2] &&
         data[0] != '') {
-      _showMyDialog();
+      _showMyDialog(data[0]);
     }
     if (data[3] == data[4] &&
         data[4] == data[5] &&
         data[3] == data[5] &&
         data[3] != '') {
-      _showMyDialog();
+      _showMyDialog(data[3]);
     }
     if (data[6] == data[7] &&
         data[7] == data[8] &&
         data[6] == data[8] &&
         data[6] != '') {
-      _showMyDialog();
+      _showMyDialog(data[6]);
     }
     if (data[0] == data[4] &&
         data[4] == data[8] &&
         data[0] == data[8] &&
         data[0] != '') {
-      _showMyDialog();
+      _showMyDialog(data[0]);
     }
     if (data[2] == data[4] &&
         data[4] == data[6] &&
         data[2] == data[6] &&
         data[2] != '') {
-      _showMyDialog();
+      _showMyDialog(data[2]);
     }
     if (data[0] == data[3] &&
         data[3] == data[6] &&
         data[0] == data[6] &&
         data[0] != '') {
-      _showMyDialog();
+      _showMyDialog(data[0]);
     }
     if (data[1] == data[4] &&
         data[4] == data[7] &&
         data[1] == data[7] &&
         data[1] != '') {
-      _showMyDialog();
+      _showMyDialog(data[1]);
     }
     if (data[2] == data[5] &&
         data[5] == data[8] &&
         data[2] == data[8] &&
         data[2] != '') {
-      _showMyDialog();
+      _showMyDialog(data[2]);
     }
   }
 
@@ -104,12 +107,13 @@ class _HomePageState extends State<HomePage> {
     currentPlayerX = true;
   }
 
-  Future<void> _showMyDialog() async {
+  Future<void> _showMyDialog(String player) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialogue(
+          winner: player,
           func: resetGame,
         );
       },
@@ -153,7 +157,9 @@ class _HomePageState extends State<HomePage> {
                       setState(() {
                         data[index] = currentPlayerX ? 'X' : 'O';
                       });
-                      checkForWin();
+                      if (timesPLayed >= 4) {
+                        checkForWin();
+                      }
                       switchPlayer();
                     },
                     child: Tile(index: index, status: data)),
@@ -161,6 +167,10 @@ class _HomePageState extends State<HomePage> {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: resetGame,
+        child: const Icon(Icons.refresh),
       ),
     );
   }
