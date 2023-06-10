@@ -43,51 +43,51 @@ class _HomePageState extends State<HomePage> {
         data[1] == data[2] &&
         data[0] == data[2] &&
         data[0] != '') {
-      _showMyDialog(data[0]);
+      _showMyDialog(data[0], draw: false);
     }
     if (data[3] == data[4] &&
         data[4] == data[5] &&
         data[3] == data[5] &&
         data[3] != '') {
-      _showMyDialog(data[3]);
+      _showMyDialog(data[3], draw: false);
     }
     if (data[6] == data[7] &&
         data[7] == data[8] &&
         data[6] == data[8] &&
         data[6] != '') {
-      _showMyDialog(data[6]);
+      _showMyDialog(data[6], draw: false);
     }
     if (data[0] == data[4] &&
         data[4] == data[8] &&
         data[0] == data[8] &&
         data[0] != '') {
-      _showMyDialog(data[0]);
+      _showMyDialog(data[0], draw: false);
     }
     if (data[2] == data[4] &&
         data[4] == data[6] &&
         data[2] == data[6] &&
         data[2] != '') {
-      _showMyDialog(data[2]);
+      _showMyDialog(data[2], draw: false);
     }
     if (data[0] == data[3] &&
         data[3] == data[6] &&
         data[0] == data[6] &&
         data[0] != '') {
-      _showMyDialog(data[0]);
+      _showMyDialog(data[0], draw: false);
     }
     if (data[1] == data[4] &&
         data[4] == data[7] &&
         data[1] == data[7] &&
         data[1] != '') {
-      _showMyDialog(data[1]);
+      _showMyDialog(data[1], draw: false);
     }
     if (data[2] == data[5] &&
         data[5] == data[8] &&
         data[2] == data[8] &&
         data[2] != '') {
-      _showMyDialog(data[2]);
+      _showMyDialog(data[2], draw: false);
     } else {
-      timesPLayed >= 8 ? _showMyDialog('X', draw: true) : null;
+      timesPLayed >= 8 ? _showMyDialog('O', draw: true) : null;
     }
   }
 
@@ -110,13 +110,13 @@ class _HomePageState extends State<HomePage> {
     currentPlayerX = true;
   }
 
-  Future<void> _showMyDialog(String player, {bool? draw}) async {
-    return showDialog<void>(
+  Future<void> _showMyDialog(String player, {required bool draw}) async {
+    return await showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialogue(
-          winner: draw! ? 'draw' : player,
+          winner: draw == true ? 'draw' : player,
           func: resetGame,
         );
       },
