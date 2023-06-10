@@ -135,9 +135,6 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              'Tic Tac Toe',
-            ),
             const SizedBox(
               height: 90,
             ),
