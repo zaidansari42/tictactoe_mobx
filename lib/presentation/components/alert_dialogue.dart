@@ -8,11 +8,13 @@ class AlertDialogue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Player $winner Wins'),
+      title: Text(winner == 'draw' ? 'Its a draw!' : 'Player $winner Wins'),
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
-            Text('Congrats, Player $winner has won the game!'),
+            Text(winner == 'draw'
+                ? 'Hard Luck, Its a draw. Try Again!'
+                : 'Congrats, Player $winner has won the game!'),
           ],
         ),
       ),

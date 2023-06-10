@@ -86,6 +86,8 @@ class _HomePageState extends State<HomePage> {
         data[2] == data[8] &&
         data[2] != '') {
       _showMyDialog(data[2]);
+    } else {
+      timesPLayed >= 8 ? _showMyDialog('X', draw: true) : null;
     }
   }
 
@@ -104,16 +106,17 @@ class _HomePageState extends State<HomePage> {
       ];
     });
 
+    timesPLayed = 0;
     currentPlayerX = true;
   }
 
-  Future<void> _showMyDialog(String player) async {
+  Future<void> _showMyDialog(String player, {bool? draw}) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialogue(
-          winner: player,
+          winner: draw! ? 'draw' : player,
           func: resetGame,
         );
       },
