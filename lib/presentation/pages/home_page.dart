@@ -44,24 +44,15 @@ class _HomePageState extends State<HomePage> {
                 itemCount: 9,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3, mainAxisSpacing: 5, crossAxisSpacing: 5),
-                itemBuilder: (context, index) => Observer(
-                  builder: (context) {
-                    return InkWell(
-                        onTap: tictac.data[index] != ""
-                            ? null
-                            : () {
-                                if (tictac.checkifAlreadyFilled(index)) return;
-                                tictac.fillin(index);
-                                if (tictac.timesPLayed >= 4) {
-                                  tictac.checkForWin(context);
-                                }
-                                tictac.switchPlayer();
-                              },
-                        child: 
-                          Tile(index: index, status: tictac.data[index])
-                        );
-                  }
-                ),
+                itemBuilder: (context, index) => Observer(builder: (context) {
+                  return InkWell(
+                      onTap: tictac.data[index] != ""
+                          ? null
+                          : () {
+                              tictac.afterClicking(index, context);
+                            },
+                      child: Tile(index: index, status: tictac.data[index]));
+                }),
               ),
             )
           ],

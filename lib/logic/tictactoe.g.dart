@@ -106,6 +106,17 @@ mixin _$Tictac on _Tictac, Store {
   }
 
   @override
+  void afterClicking(int index, BuildContext context) {
+    final _$actionInfo =
+        _$_TictacActionController.startAction(name: '_Tictac.afterClicking');
+    try {
+      return super.afterClicking(index, context);
+    } finally {
+      _$_TictacActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void resetGame() {
     final _$actionInfo =
         _$_TictacActionController.startAction(name: '_Tictac.resetGame');

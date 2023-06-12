@@ -108,6 +108,16 @@ abstract class _Tictac with Store {
   }
 
   @action
+  void afterClicking(int index, BuildContext context) {
+    if (checkifAlreadyFilled(index)) return;
+    fillin(index);
+    if (timesPLayed >= 4) {
+      checkForWin(context);
+    }
+    switchPlayer();
+  }
+
+  @action
   void resetGame() {
     data = ObservableList.of([
       '',
