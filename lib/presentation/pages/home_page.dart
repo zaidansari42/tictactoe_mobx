@@ -4,16 +4,11 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../components/tile.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   final String title;
 
-  const HomePage({super.key, required this.title});
+  HomePage({super.key, required this.title});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   final Tictac tictac = Tictac();
 
   @override
@@ -21,7 +16,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Center(
         child: Column(
