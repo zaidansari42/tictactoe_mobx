@@ -16,7 +16,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final Tictac tictac = Tictac();
 
-  // List<String> data = [
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +50,8 @@ class _HomePageState extends State<HomePage> {
                           : () {
                               tictac.afterClicking(index, context);
                             },
-                      child: Tile(index: index, status: tictac.data[index]));
+                      child: Tile(
+                          index: index, status: tictac.currentStatus[index]));
                 }),
               ),
             )

@@ -26,10 +26,8 @@ abstract class _Tictac with Store {
 
   int timesPLayed = 0;
 
-  @action
-  bool checkifAlreadyFilled(index) {
-    return (data[index] == 'X' || data[index] == 'O');
-  }
+  @computed
+  ObservableList<String> get currentStatus => data;
 
   @action
   void switchPlayer() {
@@ -43,49 +41,46 @@ abstract class _Tictac with Store {
         data[1] == data[2] &&
         data[0] == data[2] &&
         data[0] != '') {
-      _showMyDialog(data[0], draw: false, context: context);
+      _showMyDialog(data[0], context: context);
     } else if (data[3] == data[4] &&
         data[4] == data[5] &&
         data[3] == data[5] &&
         data[3] != '') {
-      _showMyDialog(data[3], draw: false, context: context);
+      _showMyDialog(data[3], context: context);
     } else if (data[6] == data[7] &&
         data[7] == data[8] &&
         data[6] == data[8] &&
         data[6] != '') {
-      _showMyDialog(data[6], draw: false, context: context);
+      _showMyDialog(data[6], context: context);
     } else if (data[0] == data[4] &&
         data[4] == data[8] &&
         data[0] == data[8] &&
         data[0] != '') {
-      _showMyDialog(data[0], draw: false, context: context);
+      _showMyDialog(data[0], context: context);
     } else if (data[2] == data[4] &&
         data[4] == data[6] &&
         data[2] == data[6] &&
         data[2] != '') {
-      _showMyDialog(data[2], draw: false, context: context);
+      _showMyDialog(data[2], context: context);
     } else if (data[0] == data[3] &&
         data[3] == data[6] &&
         data[0] == data[6] &&
         data[0] != '') {
-      _showMyDialog(data[0], draw: false, context: context);
+      _showMyDialog(data[0], context: context);
     } else if (data[1] == data[4] &&
         data[4] == data[7] &&
         data[1] == data[7] &&
         data[1] != '') {
-      _showMyDialog(data[1], draw: false, context: context);
+      _showMyDialog(data[1], context: context);
     } else if (data[2] == data[5] &&
         data[5] == data[8] &&
         data[2] == data[8] &&
         data[2] != '') {
-      _showMyDialog(data[2], draw: false, context: context);
+      _showMyDialog(data[2], context: context);
     } else if (timesPLayed >= 8) {
       _showMyDialog('O', draw: true, context: context);
     }
   }
-
-  @computed
-  List<String> get dataDisplay => data;
 
   @action
   fillin(index) {
@@ -94,7 +89,7 @@ abstract class _Tictac with Store {
 
   @action
   Future<void> _showMyDialog(String player,
-      {required bool draw, required BuildContext context}) async {
+      {bool? draw, required BuildContext context}) async {
     return await showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -109,7 +104,6 @@ abstract class _Tictac with Store {
 
   @action
   void afterClicking(int index, BuildContext context) {
-    if (checkifAlreadyFilled(index)) return;
     fillin(index);
     if (timesPLayed >= 4) {
       checkForWin(context);
