@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:tictactoe_mobx/logic/tictactoe.dart';
 
 class AlertDialogue extends StatelessWidget {
-  final VoidCallback func;
+  final VoidCallback resetFunc;
   final String winner;
-  const AlertDialogue({super.key, required this.func, required this.winner});
+  const AlertDialogue(
+      {super.key, required this.resetFunc, required this.winner});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +25,10 @@ class AlertDialogue extends StatelessWidget {
         TextButton(
           child: const Text('Play Again'),
           onPressed: () {
+            resetFunc();
             Navigator.of(context).pop();
-            func();
           },
-        ),
+        )
       ],
     );
   }

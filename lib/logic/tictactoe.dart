@@ -96,7 +96,7 @@ abstract class _Tictac with Store {
       builder: (BuildContext context) {
         return AlertDialogue(
           winner: draw == true ? 'draw' : player!,
-          func: resetGame,
+          resetFunc: resetGame,
         );
       },
     );
