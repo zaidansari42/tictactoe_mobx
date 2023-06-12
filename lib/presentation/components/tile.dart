@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Tile extends StatelessWidget {
   final int index;
-  final List<String> status;
+  final String status;
 
   const Tile({super.key, required this.index, required this.status});
 
@@ -16,9 +16,9 @@ class Tile extends StatelessWidget {
             borderRadius: BorderRadius.circular(20)),
         child: Center(
           child: Text(
-            status[index],
-            style: const TextStyle(fontSize: 40),
-          ),
+                  status,
+                  style: const TextStyle(fontSize: 40),
+                ),
         ),
       ),
     );
