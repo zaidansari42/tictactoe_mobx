@@ -52,10 +52,10 @@ mixin _$Tictac on _Tictac, Store {
       AsyncAction('_Tictac._showMyDialog', context: context);
 
   @override
-  Future<void> _showMyDialog(String player,
-      {bool? draw, required BuildContext context}) {
-    return _$_showMyDialogAsyncAction
-        .run(() => super._showMyDialog(player, draw: draw, context: context));
+  Future<void> _showMyDialog(
+      {String? player = 'X', bool? draw, required BuildContext context}) {
+    return _$_showMyDialogAsyncAction.run(() =>
+        super._showMyDialog(player: player, draw: draw, context: context));
   }
 
   late final _$_TictacActionController =

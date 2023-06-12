@@ -41,44 +41,44 @@ abstract class _Tictac with Store {
         data[1] == data[2] &&
         data[0] == data[2] &&
         data[0] != '') {
-      _showMyDialog(data[0], context: context);
+      _showMyDialog(player: data[0], context: context);
     } else if (data[3] == data[4] &&
         data[4] == data[5] &&
         data[3] == data[5] &&
         data[3] != '') {
-      _showMyDialog(data[3], context: context);
+      _showMyDialog(player: data[3], context: context);
     } else if (data[6] == data[7] &&
         data[7] == data[8] &&
         data[6] == data[8] &&
         data[6] != '') {
-      _showMyDialog(data[6], context: context);
+      _showMyDialog(player: data[6], context: context);
     } else if (data[0] == data[4] &&
         data[4] == data[8] &&
         data[0] == data[8] &&
         data[0] != '') {
-      _showMyDialog(data[0], context: context);
+      _showMyDialog(player: data[0], context: context);
     } else if (data[2] == data[4] &&
         data[4] == data[6] &&
         data[2] == data[6] &&
         data[2] != '') {
-      _showMyDialog(data[2], context: context);
+      _showMyDialog(player: data[2], context: context);
     } else if (data[0] == data[3] &&
         data[3] == data[6] &&
         data[0] == data[6] &&
         data[0] != '') {
-      _showMyDialog(data[0], context: context);
+      _showMyDialog(player: data[0], context: context);
     } else if (data[1] == data[4] &&
         data[4] == data[7] &&
         data[1] == data[7] &&
         data[1] != '') {
-      _showMyDialog(data[1], context: context);
+      _showMyDialog(player: data[1], context: context);
     } else if (data[2] == data[5] &&
         data[5] == data[8] &&
         data[2] == data[8] &&
         data[2] != '') {
-      _showMyDialog(data[2], context: context);
+      _showMyDialog(player: data[2], context: context);
     } else if (timesPLayed >= 8) {
-      _showMyDialog('O', draw: true, context: context);
+      _showMyDialog(draw: true, context: context);
     }
   }
 
@@ -88,14 +88,14 @@ abstract class _Tictac with Store {
   }
 
   @action
-  Future<void> _showMyDialog(String player,
-      {bool? draw, required BuildContext context}) async {
+  Future<void> _showMyDialog(
+      {String? player = 'X', bool? draw, required BuildContext context}) async {
     return await showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialogue(
-          winner: draw == true ? 'draw' : player,
+          winner: draw == true ? 'draw' : player!,
           func: resetGame,
         );
       },
